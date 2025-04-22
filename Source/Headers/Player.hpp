@@ -5,6 +5,7 @@ class Bullet;
 class Player
 {
 	float angle;
+	float shoot_timer;
 
 	sf::Vector2f position;
 	sf::Vector2f origin;

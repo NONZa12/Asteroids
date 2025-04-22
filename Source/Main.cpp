@@ -6,7 +6,6 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode({ 1200, 900 }), "Asteroids", sf::Style::Close | sf::Style::Titlebar);
-    window.setFramerateLimit(75);
 
     sf::Clock clock;
 

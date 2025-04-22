@@ -5,11 +5,16 @@
 #include "Headers/Bullet.hpp"
 
 Bullet::Bullet(sf::Vector2f position, float angle) :
-	position(),
-	angle()
+	angle(angle),
+	death_timer(gbl::bullet::BULLET_LIFE),
+	position(position)
 {
-	this->position = position;
-	this->angle = angle;
+
+}
+
+bool Bullet::is_dead() const
+{
+	return 0 > death_timer;
 }
 
 void Bullet::Draw(sf::RenderWindow& window)
@@ -29,6 +34,8 @@ void Bullet::Draw(sf::RenderWindow& window)
 
 void Bullet::Update(float deltatime)
 {
+	death_timer -= deltatime;
+
 	float radian = angle * (gbl::PI / 180.f);
 
 	position.x += cos(radian) * deltatime * gbl::bullet::BULLET_SPEED;

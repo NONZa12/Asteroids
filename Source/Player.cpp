@@ -6,9 +6,10 @@
 #include "Headers/Player.hpp"
 
 Player::Player() :
-	position(300, 300),
 	angle(0),
-	origin(0, 31)
+	shoot_timer(0),
+	position(300, 300),
+	origin(0, 16)
 {
 
 }
@@ -36,9 +37,21 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Update(float deltatime)
 {
+	shoot_timer -= deltatime;
+
 	for (Bullet& bullet : bullets)
 	{
 		bullet.Update(deltatime);
+	}
+
+	for (unsigned int i = 0; i < bullets.size(); i++)
+	{
+		if (bullets[i].is_dead())
+		{
+			bullets.erase(i + bullets.begin());
+
+			i--;
+		}
 	}
 
 	float radian = angle * (gbl::PI / 180.f);
@@ -56,8 +69,10 @@ void Player::Update(float deltatime)
 		position.x += cos(radian) * deltatime * gbl::player::PLAYER_SPEED;
 		position.y += sin(radian) * deltatime * gbl::player::PLAYER_SPEED;
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && shoot_timer <= 0)
 	{
+		shoot_timer = gbl::player::SHOOT_DELAY;
+
 		bullets.push_back(Bullet(position, angle));
 	}
 	
