@@ -1,9 +1,7 @@
-﻿/.vs/Asteroids
-/Asteroids/x64
-/x64
+﻿.vs/
+Asteroids/
+x64/
 *.sln
-/Asteroids.vcxproj
-/Asteroids.vcxproj.filters
-/Asteroids.vcxproj.user
-/.gitignore
-/.gitignore
+*.vcxproj
+*.filters
+*.user
