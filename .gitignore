@@ -1,4 +1,5 @@
-﻿.vs/
+﻿#ignore visual studio stuff
+.vs/
 Asteroids/
 x64/
 *.sln

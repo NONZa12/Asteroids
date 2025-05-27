@@ -1,7 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-#include "Headers/Bullet.hpp"
 #include "Headers/Global.hpp"
 #include "Headers/Player.hpp"
 
@@ -9,7 +8,7 @@ Player::Player() :
 	angle(0),
 	shoot_timer(0),
 	position(300, 300),
-	origin(0, 16)
+	origin(16, 16)
 {
 
 }
@@ -54,8 +53,6 @@ void Player::Update(float deltatime)
 		}
 	}
 
-	float radian = angle * (gbl::PI / 180.f);
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
 		angle -= deltatime * gbl::player::TURN_SPEED;
@@ -66,6 +63,8 @@ void Player::Update(float deltatime)
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	{
+		float radian = angle * (gbl::PI / 180.f);
+
 		position.x += cos(radian) * deltatime * gbl::player::PLAYER_SPEED;
 		position.y += sin(radian) * deltatime * gbl::player::PLAYER_SPEED;
 	}
@@ -73,7 +72,13 @@ void Player::Update(float deltatime)
 	{
 		shoot_timer = gbl::player::SHOOT_DELAY;
 
-		bullets.push_back(Bullet(position, angle));
+		float radian = angle * (gbl::PI / 180.f);
+		sf::Vector2f bullet_position = position + sf::Vector2f(
+			cos(radian) * deltatime * gbl::bullet::BULLET_OFFSET,
+			sin(radian) * deltatime * gbl::bullet::BULLET_OFFSET
+		);
+
+		bullets.push_back(Bullet(bullet_position, angle));
 	}
 	
 }

@@ -2,7 +2,7 @@
 
 namespace gbl
 {
-		constexpr float PI = 3.14159265359f;
+		constexpr float PI = 3.141592653589793116f;
 
 		namespace player
 		{
@@ -13,7 +13,19 @@ namespace gbl
 
 		namespace bullet
 		{
+			constexpr float BULLET_OFFSET = 50.f;
 			constexpr float BULLET_SPEED = 300.f;
 			constexpr float BULLET_LIFE = 5.f;
+		}
+
+		namespace asteroid
+		{
+			constexpr unsigned int ASTEROID_TOTAL = 10;
+		}
+
+		namespace screen
+		{
+			constexpr unsigned short WIDTH = 640;
+			constexpr unsigned short HEIGHT = 360;
 		}
 }
