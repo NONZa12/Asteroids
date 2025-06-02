@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include <random>
 
 #include "Headers/Global.hpp"
 #include "Headers/Game.hpp"
@@ -62,8 +61,14 @@ void Game::generate_asteroids()
 
 		do
 		{
-			
+			std::uniform_int_distribution<unsigned int> distribution_x(0, gbl::screen::WIDTH);
+			random_x = distribution_x(generator);
+
+			std::uniform_int_distribution<unsigned int> distribution_y(0, gbl::screen::HEIGHT);
+			random_y = distribution_y(generator);
 		}
 		while (1);
+
+		asteroids.push_back(Asteroid(sf::Vector2f(random_x, random_y), 0));
 	}
 }

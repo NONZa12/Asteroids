@@ -4,9 +4,9 @@
 #include "Headers/Asteroid.hpp"
 #include "Headers/Global.hpp"
 
-Asteroid::Asteroid() :
-	angle(),
-	position()
+Asteroid::Asteroid(sf::Vector2f _position, float _angle) :
+	angle(_angle),
+	position(_position)
 {
 
 }

@@ -3,6 +3,8 @@
 #include "Headers/Player.hpp"
 #include "Headers/Asteroid.hpp"
 
+#include <random>
+
 class Game
 {
 	Player player;
