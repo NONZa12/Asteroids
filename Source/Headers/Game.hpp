@@ -1,9 +1,9 @@
 #pragma once
 
+#include <random>
+
 #include "Headers/Player.hpp"
 #include "Headers/Asteroid.hpp"
-
-#include <random>
 
 class Game
 {
@@ -18,6 +18,8 @@ class Game
 	std::default_random_engine generator;
 
 	sf::RenderWindow window;
+	
+	sf::Clock seed;
 
 public:
 	Game();

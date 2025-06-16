@@ -6,9 +6,10 @@ namespace gbl
 
 		namespace player
 		{
-			constexpr float PLAYER_SPEED = 200.f;
-			constexpr float TURN_SPEED = 150.f;
+			constexpr float PLAYER_SPEED = 150.f;
+			constexpr float TURN_SPEED = 175.f;
 			constexpr float SHOOT_DELAY = 0.3f;
+			constexpr unsigned int PLAYER_SAFEZONE = 45;
 		}
 
 		namespace bullet
@@ -21,11 +22,12 @@ namespace gbl
 		namespace asteroid
 		{
 			constexpr unsigned int ASTEROID_TOTAL = 10;
+			constexpr float ASTEROID_SPEED = 50.f;
 		}
 
 		namespace screen
 		{
 			constexpr unsigned short WIDTH = 640;
-			constexpr unsigned short HEIGHT = 360;
+			constexpr unsigned short HEIGHT = 432;
 		}
 }

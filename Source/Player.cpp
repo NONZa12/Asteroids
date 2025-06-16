@@ -7,8 +7,8 @@
 Player::Player() :
 	angle(0),
 	shoot_timer(0),
-	position(300, 300),
-	origin(16, 16)
+	position(gbl::screen::WIDTH / 2, gbl::screen::HEIGHT / 2),
+	origin(6.5, 6.5)
 {
 
 }
