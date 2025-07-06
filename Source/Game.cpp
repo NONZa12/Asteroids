@@ -52,7 +52,29 @@ void Game::Handle_event()
 
 void Game::Update(float deltatime)
 {
-	player.Update(deltatime);
+	has_focus = window.hasFocus();
+
+	if (has_focus)
+	{
+
+		for (Asteroid& asteroid : asteroids)
+		{
+			asteroid.Update(deltatime);
+		}
+
+		player.Update(deltatime);
+		player.CheckCollision(asteroids);
+
+		for (unsigned int i = 0; i < asteroids.size(); i++)
+		{
+			if (asteroids[i].is_dead())
+			{
+				asteroids.erase(i + asteroids.begin());
+
+				i--;
+			}
+		}
+	}
 }
 
 void Game::generate_asteroids()

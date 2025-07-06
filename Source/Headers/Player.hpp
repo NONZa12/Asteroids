@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Headers/Bullet.hpp"
+#include "Headers/Asteroid.hpp"
 
 class Player
 {
@@ -17,4 +18,5 @@ public:
 
 	void Draw(sf::RenderWindow& window);
 	void Update(float deltatime);
+	void CheckCollision(std::vector<Asteroid>& asteroids);
 };

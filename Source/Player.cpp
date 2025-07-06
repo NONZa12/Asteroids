@@ -36,8 +36,6 @@ void Player::Draw(sf::RenderWindow& window)
 
 void Player::Update(float deltatime)
 {
-	shoot_timer -= deltatime;
-
 	for (Bullet& bullet : bullets)
 	{
 		bullet.Update(deltatime);
@@ -51,6 +49,11 @@ void Player::Update(float deltatime)
 
 			i--;
 		}
+	}
+
+	if (shoot_timer > 0)
+	{
+		shoot_timer -= deltatime;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
@@ -81,4 +84,31 @@ void Player::Update(float deltatime)
 		bullets.push_back(Bullet(bullet_position, angle));
 	}
 	
+}
+
+void Player::CheckCollision(std::vector<Asteroid>& asteroids)
+{
+	for (Asteroid& asteroid : asteroids)
+	{
+		for (Bullet& bullet : bullets)
+		{
+			// delta between asteroid and bullet.
+			float dx = bullet.get_x() - asteroid.get_x();
+			float dy = bullet.get_y() - asteroid.get_y();
+
+			float distance_fromcircle = dx * dx + dy * dy;
+			float radiusSum = bullet.get_radius() + asteroid.get_radius();
+
+			if (distance_fromcircle <= radiusSum * radiusSum)
+			{
+				bullet.die();
+				asteroid.hit();
+				std::cout << "collision!!\n";
+			}
+
+			std::cout << "Bullet: (" << bullet.get_x() << ", " << bullet.get_y() << ") r=" << bullet.get_radius() << "\n";
+			std::cout << "Asteroid: (" << asteroid.get_x() << ", " << asteroid.get_y() << ") r=" << asteroid.get_radius() << "\n";
+			std::cout << "Distance: " << std::sqrt(distance_fromcircle) << "  RadiusSum: " << radiusSum << std::endl;
+		}
+	}
 }
