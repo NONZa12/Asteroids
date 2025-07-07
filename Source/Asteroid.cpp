@@ -55,16 +55,12 @@ void Asteroid::Draw(sf::RenderWindow& window)
 
 void Asteroid::Update(float deltatime)
 {
-	if (hit_timer <= gbl::asteroid::ASTEROID_HIT_DURATION)
+	if (hit_timer < gbl::asteroid::ASTEROID_HIT_DURATION)
 	{
-		if (hit_timer > 0)
-		{
-			hit_timer--;
-		}
-		else
+		if (hit_timer <= 0)
 		{
 			dead = 1;
-			std::cout << "dead";
+			//std::cout << "dead";
 		}
 	}
 
@@ -83,8 +79,5 @@ void Asteroid::Update(float deltatime)
 
 void Asteroid::hit()
 {
-	if (hit_timer == gbl::asteroid::ASTEROID_HIT_DURATION)
-	{
 		hit_timer--;
-	}
 }

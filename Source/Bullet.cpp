@@ -15,7 +15,7 @@ Bullet::Bullet(sf::Vector2f _position, float _angle) :
 
 bool Bullet::is_dead() const
 {
-	return death_timer < 0;
+	return death_timer <= 0;
 }
 
 float Bullet::get_x() const

@@ -101,14 +101,13 @@ void Player::CheckCollision(std::vector<Asteroid>& asteroids)
 
 			if (distance_fromcircle <= radiusSum * radiusSum)
 			{
+				/*std::cout << "COLLISION: Bullet(" << bullet.get_x() << "," << bullet.get_y() << ") r=" << bullet.get_radius()
+					<< " Asteroid(" << asteroid.get_x() << "," << asteroid.get_y() << ") r=" << asteroid.get_radius()
+					<< " Distance=" << std::sqrt(distance_fromcircle) << " RadiusSum=" << radiusSum << std::endl;*/
 				bullet.die();
 				asteroid.hit();
 				std::cout << "collision!!\n";
 			}
-
-			std::cout << "Bullet: (" << bullet.get_x() << ", " << bullet.get_y() << ") r=" << bullet.get_radius() << "\n";
-			std::cout << "Asteroid: (" << asteroid.get_x() << ", " << asteroid.get_y() << ") r=" << asteroid.get_radius() << "\n";
-			std::cout << "Distance: " << std::sqrt(distance_fromcircle) << "  RadiusSum: " << radiusSum << std::endl;
 		}
 	}
 }
