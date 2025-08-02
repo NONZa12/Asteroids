@@ -5,6 +5,8 @@
 
 class Player
 {
+	bool dead;
+
 	float angle;
 	float shoot_timer;
 

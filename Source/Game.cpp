@@ -57,21 +57,25 @@ void Game::Update(float deltatime)
 	if (has_focus)
 	{
 
-		for (Asteroid& asteroid : asteroids)
+		if (asteroids.size() > 0)
 		{
-			asteroid.Update(deltatime);
-		}
 
-		player.Update(deltatime);
-		player.CheckCollision(asteroids);
-
-		for (unsigned int i = 0; i < asteroids.size(); i++)
-		{
-			if (asteroids[i].is_dead())
+			for (Asteroid& asteroid : asteroids)
 			{
-				asteroids.erase(i + asteroids.begin());
+				asteroid.Update(deltatime);
+			}
 
-				i--;
+			player.Update(deltatime);
+			player.CheckCollision(asteroids);
+
+			for (unsigned int i = 0; i < asteroids.size(); i++)
+			{
+				if (asteroids[i].is_dead())
+				{
+					asteroids.erase(i + asteroids.begin());
+
+					i--;
+				}
 			}
 		}
 	}
