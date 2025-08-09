@@ -14,6 +14,21 @@ Player::Player() :
 
 }
 
+float Player::get_x() const
+{
+	return position.x;
+}
+
+float Player::get_y() const
+{
+	return position.y;
+}
+
+float Player::get_radius() const
+{
+	return 16 - origin.x;
+}
+
 void Player::Draw(sf::RenderWindow& window)
 {
 	for (Bullet& bullet : bullets)
@@ -108,13 +123,13 @@ void Player::CheckCollision(std::vector<Asteroid>& asteroids)
 			}
 
 			// delta between asteroid and bullet.
-			float dx = bullet.get_x() - asteroid.get_x();
-			float dy = bullet.get_y() - asteroid.get_y();
+			float dx_bullet = bullet.get_x() - asteroid.get_x();
+			float dy_bullet = bullet.get_y() - asteroid.get_y();
 
-			float distance_fromcircle = dx * dx + dy * dy;
-			float radiusSum = bullet.get_radius() + asteroid.get_radius();
+			float distance_fromcircle_bullet = dx_bullet * dx_bullet + dy_bullet * dy_bullet;
+			float radiusSum_bullet = bullet.get_radius() + asteroid.get_radius();
 
-			if (distance_fromcircle <= radiusSum * radiusSum)
+			if (distance_fromcircle_bullet <= radiusSum_bullet * radiusSum_bullet)
 			{
 
 				bullet.die();
@@ -127,5 +142,26 @@ void Player::CheckCollision(std::vector<Asteroid>& asteroids)
 			continue;
 		}
 		//for check collision of player and asteroids
+
+		float dx_player = get_x() - asteroid.get_x();
+		float dy_player = get_y() - asteroid.get_y();
+
+		float distance_fromcircle_player = dx_player * dx_player + dy_player * dy_player;
+		float radiusSum_player = get_radius() + asteroid.get_radius();
+
+		if (distance_fromcircle_player <= radiusSum_player * radiusSum_player)
+		{
+			dead = 1;
+		}
 	}
+}
+
+void Player::reset()
+{
+	position.x = 0.5f * gbl::screen::WIDTH;
+	position.y = 0.5f * gbl::screen::HEIGHT;
+
+	shoot_timer = 0;
+
+	bullets.clear();
 }

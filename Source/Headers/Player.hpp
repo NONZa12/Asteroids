@@ -18,7 +18,12 @@ class Player
 public:
 	Player();
 
+	float get_x() const;
+	float get_y() const;
+	float get_radius() const;
+
 	void Draw(sf::RenderWindow& window);
 	void Update(float deltatime);
 	void CheckCollision(std::vector<Asteroid>& asteroids);
+	void reset();
 };

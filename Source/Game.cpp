@@ -78,6 +78,12 @@ void Game::Update(float deltatime)
 				}
 			}
 		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::R))
+		{
+			generate_asteroids();
+
+			player.reset();
+		}
 	}
 }
 

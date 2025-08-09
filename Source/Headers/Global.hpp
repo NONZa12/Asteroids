@@ -9,7 +9,7 @@ namespace gbl
 			constexpr float PLAYER_SPEED = 150.f;
 			constexpr float TURN_SPEED = 230.f;
 			constexpr float SHOOT_DELAY = 0.3f;
-			constexpr unsigned int PLAYER_SAFEZONE = 45;
+			constexpr unsigned int PLAYER_SAFEZONE = 60;
 		}
 
 		namespace bullet
@@ -21,7 +21,7 @@ namespace gbl
 
 		namespace asteroid
 		{
-			constexpr unsigned int ASTEROID_TOTAL = 10;
+			constexpr unsigned int ASTEROID_TOTAL = 1;
 			constexpr float ASTEROID_SPEED = 50.f;
 			constexpr unsigned int ASTEROID_HIT_DURATION = 3;
 		}
