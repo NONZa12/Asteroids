@@ -3,6 +3,7 @@
 #include "Headers/Global.hpp"
 #include "Headers/Game.hpp"
 #include "Headers/Bullet.hpp"
+#include "Headers/Drawtext.hpp"
 
 Game::Game() :
 	window(sf::VideoMode({ gbl::screen::WIDTH*2, gbl::screen::HEIGHT*2 }), "Asteroids", sf::Style::Close),
@@ -28,11 +29,23 @@ void Game::Draw()
 	{
 		window.clear();
 
-		for (Asteroid& asteroid : asteroids)
+		if (asteroids.empty())
 		{
-			asteroid.Draw(window);
+			draw_text("WIN!!!", window);
 		}
-		player.Draw(window);
+		else if (player.is_dead() == 0)
+		{
+			for (Asteroid& asteroid : asteroids)
+			{
+				asteroid.Draw(window);
+			}
+
+			player.Draw(window);
+		}
+		else
+		{
+			draw_text("LOSE!!!", window);
+		}
 
 		window.display();
 

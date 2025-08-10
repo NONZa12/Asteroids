@@ -18,6 +18,8 @@ class Player
 public:
 	Player();
 
+	bool is_dead() const;
+
 	float get_x() const;
 	float get_y() const;
 	float get_radius() const;

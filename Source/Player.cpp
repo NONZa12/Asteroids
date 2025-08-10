@@ -14,6 +14,11 @@ Player::Player() :
 
 }
 
+bool Player::is_dead() const
+{
+	return dead;
+}
+
 float Player::get_x() const
 {
 	return position.x;
