@@ -3,7 +3,7 @@
 
 #include "Headers/Drawtext.hpp"
 
-void draw_text(const std::string& i_text, sf::RenderWindow& i_window)
+void draw_text(sf::Vector2f i_position, const std::string& i_text, sf::RenderWindow& i_window)
 {
 	sf::Font pixelzone;
 	if (!pixelzone.openFromFile("Source/Resources/Fonts/Pixelzone.ttf"))
@@ -16,6 +16,11 @@ void draw_text(const std::string& i_text, sf::RenderWindow& i_window)
 	text.setCharacterSize(30);
 	text.setStyle(sf::Text::Regular);
 	text.setFillColor(sf::Color::White);
+
+	sf::Rect<float> bounds = text.getLocalBounds();
+	text.setOrigin({ bounds.position.x + bounds.size.x / 2.f, bounds.position.y + bounds.size.y / 2.f });
+
+	text.setPosition(i_position);
 
 	i_window.draw(text);
 }

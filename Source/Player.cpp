@@ -166,7 +166,9 @@ void Player::reset()
 	position.x = 0.5f * gbl::screen::WIDTH;
 	position.y = 0.5f * gbl::screen::HEIGHT;
 
+	angle = 0;
 	shoot_timer = 0;
+	dead = 0;
 
 	bullets.clear();
 }

@@ -31,7 +31,7 @@ void Game::Draw()
 
 		if (asteroids.empty())
 		{
-			draw_text("WIN!!!", window);
+			draw_text({gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f}, "WIN!!! PRESS R TO RESTART", window);
 		}
 		else if (player.is_dead() == 0)
 		{
@@ -44,7 +44,7 @@ void Game::Draw()
 		}
 		else
 		{
-			draw_text("LOSE!!!", window);
+			draw_text({ gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f }, "LOSE!!! PRESS R TO RESTART", window);
 		}
 
 		window.display();
@@ -70,7 +70,7 @@ void Game::Update(float deltatime)
 	if (has_focus)
 	{
 
-		if (asteroids.size() > 0)
+		if (asteroids.size() > 0 && player.is_dead() == 0)
 		{
 
 			for (Asteroid& asteroid : asteroids)

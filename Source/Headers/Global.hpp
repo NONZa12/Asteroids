@@ -21,7 +21,7 @@ namespace gbl
 
 		namespace asteroid
 		{
-			constexpr unsigned int ASTEROID_TOTAL = 1;
+			constexpr unsigned int ASTEROID_TOTAL = 8;
 			constexpr float ASTEROID_SPEED = 50.f;
 			constexpr unsigned int ASTEROID_HIT_DURATION = 3;
 		}
