@@ -21,6 +21,10 @@ class Game
 	
 	sf::Clock seed;
 
+	sf::Texture background_texture;
+
+	sf::RectangleShape background;
+
 public:
 	Game();
 

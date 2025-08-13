@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 #include "Headers/Global.hpp"
 #include "Headers/Game.hpp"
@@ -12,6 +13,13 @@ Game::Game() :
 
 {
 	window.setView(sf::View(sf::FloatRect({0,0}, { gbl::screen::WIDTH, gbl::screen::HEIGHT})));
+
+	if (!background_texture.loadFromFile("Source/Resources/Images/background.png"))
+	{
+		std::cerr << "Error loading BACKGROUND texture" << std::endl;
+	}
+	background.setTexture(&background_texture);
+	background.setSize({ gbl::screen::WIDTH, gbl::screen::HEIGHT });
 
 	has_focus = window.hasFocus();
 
@@ -29,9 +37,11 @@ void Game::Draw()
 	{
 		window.clear();
 
+		window.draw(background);
+
 		if (asteroids.empty())
 		{
-			draw_text({gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f}, "WIN!!! PRESS R TO RESTART", window);
+			draw_text({gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f - 25.f}, "WIN!!! PRESS R TO RESTART", window);
 		}
 		else if (player.is_dead() == 0)
 		{
@@ -44,7 +54,7 @@ void Game::Draw()
 		}
 		else
 		{
-			draw_text({ gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f }, "LOSE!!! PRESS R TO RESTART", window);
+			draw_text({ gbl::screen::WIDTH * 0.5f, gbl::screen::HEIGHT * 0.5f - 25.f}, "LOSE!!! PRESS R TO RESTART", window);
 		}
 
 		window.display();
